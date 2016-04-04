@@ -3,6 +3,7 @@
 @nav-color: rgb(210, 220, 233);
 @nav-highlight-color: #ff8c03;
 @nav-bg-color: #40464e;
+@animation-duration: 0.4s;
 
 .acme-navbar-text {
   color: white;
@@ -45,4 +46,31 @@
 .nav li>ul>li>ul a{
   padding-left: @padding-first + @padding-gap;
   margin-left: 0;
+}
+
+
+.animate-show {
+  	-moz-transition-duration: @animation-duration;
+    -webkit-transition-duration: @animation-duration;
+    -o-transition-duration: @animation-duration;
+    transition-duration: @animation-duration;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    max-height: 1000px;
+    overflow: hidden;
+}
+
+.animate-show.ng-hide {
+  	overflow: hidden;
+    max-height: 0;
+    -moz-transition-duration: @animation-duration;
+    -webkit-transition-duration: @animation-duration;
+    -o-transition-duration: @animation-duration;
+    transition-duration: @animation-duration;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }

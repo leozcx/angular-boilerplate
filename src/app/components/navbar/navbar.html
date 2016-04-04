@@ -9,7 +9,7 @@
 			</small>
 		</a>
 		<!-- second level -->
-		<ul class="nav nav-pills nav-stacked" ng-show="topItem.expanded" nf-if="topItem.hasChildren">
+		<ul class="nav nav-pills nav-stacked animate-show" ng-show="topItem.expanded" nf-if="topItem.hasChildren">
 			<li ng-class="{'active': secondItem.pageId == vm.selectedPage.pageId}" ng-repeat="secondItem in topItem.children">
 				<a href="{{secondItem.href}}" ng-click="vm.toggle(secondItem);">
 					{{(secondItem.pageDisplayName_key || secondItem.pageDisplayName) | translate}}
@@ -20,7 +20,7 @@
 					</small>
 				</a>
 				<!-- third level -->
-				<ul class="nav nav-pills nav-stacked" ng-show="secondItem.expanded" nf-if="secondItem.hasChildren">
+				<ul class="nav nav-pills nav-stacked animate-show" ng-show="secondItem.expanded" nf-if="secondItem.hasChildren">
 					<li ng-class="{'active': thirdItem.pageId == vm.selectedPage.pageId}" ng-repeat="thirdItem in secondItem.children">
 						<a href="{{thirdItem.href}}" ng-click="vm.toggle(thirdItem);">
 							{{(thirdItem.pageDisplayName_key || thirdItem.pageDisplayName) | translate}}

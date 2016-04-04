@@ -1,7 +1,8 @@
 (function() {
 	'use strict';
-
-	angular.module('auth').directive('navBar', [ acmeNavbar]);
+	
+	var module = angular.module('navBar', ['ngAnimate']);
+	module.directive('navBar', [ acmeNavbar]);
 	
 	/** @ngInject */
 	function acmeNavbar() {
