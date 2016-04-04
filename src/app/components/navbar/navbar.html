@@ -1,22 +1,33 @@
-<nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-        <span class="glyphicon glyphicon-home"></span> Gulp Angular
-      </a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#/">Home</a></li>
-        <li><a ng-href="#/profile">Profile</a></li>
-        <li><a ng-href="#/admin">admin</a></li>
-        <li><a ng-href="#/signin">Signin</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right acme-navbar-text">
-        <li>Application was created {{ vm.relativeDate }}.</li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<ul class="nav nav-pills nav-stacked mala-aside">
+	<li ng-class="{'active': topItem.pageId == vm.selectedPage.pageId}" ng-repeat="topItem in vm.data">
+		<a href="{{topItem.href}}" ng-click="vm.toggle(topItem);">
+			{{(topItem.pageDisplayName_key || topItem.pageDisplayName) | translate}}
+			<small>
+				<span class="glyphicon pull-right" aria-hidden="true" ng-if="topItem.hasChildren"
+					ng-class="{'glyphicon-triangle-bottom': !topItem.expanded, 'glyphicon-triangle-top': topItem.expanded}">
+				</span>
+			</small>
+		</a>
+		<!-- second level -->
+		<ul class="nav nav-pills nav-stacked" ng-show="topItem.expanded" nf-if="topItem.hasChildren">
+			<li ng-class="{'active': secondItem.pageId == vm.selectedPage.pageId}" ng-repeat="secondItem in topItem.children">
+				<a href="{{secondItem.href}}" ng-click="vm.toggle(secondItem);">
+					{{(secondItem.pageDisplayName_key || secondItem.pageDisplayName) | translate}}
+					<small>
+						<span class="glyphicon pull-right" aria-hidden="true" ng-if="secondItem.hasChildren"
+							ng-class="{'glyphicon-triangle-bottom': !secondItem.expanded, 'glyphicon-triangle-top': secondItem.expanded}">
+						</span>
+					</small>
+				</a>
+				<!-- third level -->
+				<ul class="nav nav-pills nav-stacked" ng-show="secondItem.expanded" nf-if="secondItem.hasChildren">
+					<li ng-class="{'active': thirdItem.pageId == vm.selectedPage.pageId}" ng-repeat="thirdItem in secondItem.children">
+						<a href="{{thirdItem.href}}" ng-click="vm.toggle(thirdItem);">
+							{{(thirdItem.pageDisplayName_key || thirdItem.pageDisplayName) | translate}}
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>

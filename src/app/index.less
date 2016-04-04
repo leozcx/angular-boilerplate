@@ -10,22 +10,36 @@
  *  The list of variables are listed here bower_components/bootstrap/less/variables.less
  */
 @navbar-inverse-link-color: #5AADBB;
-@icon-font-path: '../../bower_components/bootstrap/fonts/';
+@icon-font-path: '../../bootstrap/fonts/';
+@top-size: 60px;
+@left-size: 180px;
+@bg-color: #f1f4f8;
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+#left {
+	height: 100%;
+	position: absolute;
+	top: @top-size;
 }
 
-.thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
+#main {
+	position: absolute;
+	left: @left-size;
+	top: @top-size;
+	margin: 10px;
 }
+
+#top {
+	position: absolute;
+	width: 100%;
+	height: @top-size;
+}
+
+body {
+	font-size: 13px;
+	line-height: 1.5;
+	background: @bg-color;
+}
+
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

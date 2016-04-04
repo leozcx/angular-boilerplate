@@ -1,0 +1,39 @@
+[
+	{
+		'pageId': '1',
+		'pageDisplayName': '数据报告',
+		'requiredPermits': [],
+		'children': [
+			{
+				'pageId': '1.1',
+				'pageDisplayName': '数据概览',
+				'requiredPermits': []			
+			},
+			{
+				'pageId': '1.2',
+				'pageDisplayName': '产品线数据',
+				'children': [
+					{
+						'pageId': '1.2.1',
+						'pageDisplayName': '出租车'
+					}, {
+						'pageId': '1.2.2',
+						'pageDisplayName': '专车'
+					}
+				]
+			}
+		]
+	}, 
+	{
+		'pageId': '2',
+		'pageDisplayName': '问题追踪',
+		'requiredPermits': ['21'],
+		'children': [
+			{
+				'pageId': '1.1',
+				'pageDisplayName': '问题列表',
+				'requiredPermits': []			
+			}
+		]
+	}
+]

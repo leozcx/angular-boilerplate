@@ -8,7 +8,6 @@
     "angular-sanitize": "~1.5.3",
     "angular-messages": "~1.5.3",
     "angular-aria": "~1.5.3",
-    "jquery": "~2.1.4",
     "angular-route": "~1.5.3",
     "bootstrap": "~3.3.5",
     "angular-bootstrap": "~0.14.3",
@@ -17,7 +16,8 @@
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
     "angular": "~1.5.3",
-    "angular-spinners": "^3.1.2"
+    "angular-spinners": "^3.1.2",
+    "angular-translate": "^2.11.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"
