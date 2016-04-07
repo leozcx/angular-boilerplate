@@ -7,11 +7,14 @@
 	/** @ngInject */
 	function acmeNavbar() {
 		var directive = {
-			restrict : 'E',
+			restrict : 'EA',
 			templateUrl : 'app/components/navbar/navbar.html',
 			controllerAs : 'vm',
-			bindToController : true,
-			controller : function(navConfigProvider, $http) {
+			bindToController : {
+				name: '=',
+				fetch: '&'
+			},
+			controller : ["navConfigProvider", "$http", "$scope", function(navConfigProvider, $http, $scope) {
 				var vm = this;
 				vm.selectedPage = navConfigProvider.config[0];
 				vm.selectedPage.expanded = true;
@@ -27,17 +30,24 @@
 					}
 					return result;
 				};
-				
 				vm.toggle = function(item) {
 					item.expanded = !item.expanded;
 					vm.selectedPage = item;
 				};
-				
 				vm.hasPermit = function(item) {
 					console.log(item)
 					return true;
 				};
-			}
+				if(vm.fetch) {
+					vm.fetch().then(function(d) {
+						if(d) {
+							d.forEach(function(item) {
+								vm.data.push(item);
+							})
+						}
+					});
+				}
+			}]
 		};
 
 		return directive;
