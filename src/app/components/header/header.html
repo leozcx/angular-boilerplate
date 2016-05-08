@@ -1,15 +1,25 @@
 <div class="didi-header">
-	<div class="entrance">
-		<a title="{{'TITLE' | translate}}" class="logo-href" href="javascript:void(0);">
-			<span class="logo"></span><span class="sep"></span>
-		</a>
-	</div>
-	<ul class="mainnav-wrapper">
-		<li class="active"><a href="javascript:void(0)">{{'TITLE' | translate}}</a></li>
-	</ul>
-	<div class="nav-container">
-		<div style="padding-right: 20px">
-			<span class="logout"><a href="/user/logout">{{ 'SIGNOUT' | translate }}</a></span>
-		</div>
-	</div>
+    <div class="entrance">
+        <a title="{{'TITLE' | translate}}" class="logo-href" href="javascript:void(0);">
+            <span class="logo"></span><span class="sep"></span>
+        </a>
+    </div>
+    <ul class="mainnav-wrapper">
+        <li class="active"><a href="javascript:void(0)">{{'TITLE' | translate}}</a></li>
+    </ul>
+    <div class="nav-container">
+        <div style="padding-right: 20px">
+            <span uib-dropdown on-toggle="toggled(open)">
+                <a href id="simple-dropdown" uib-dropdown-toggle>
+                    Test
+                </a>
+                <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                    <li ng-repeat="choice in items">
+                        <a href>{{choice}}</a>
+                    </li>
+                </ul>
+            </span>
+            <span class="logout"><a href="/user/logout">{{ 'SIGNOUT' | translate }}</a></span>
+        </div>
+    </div>
 </div>
