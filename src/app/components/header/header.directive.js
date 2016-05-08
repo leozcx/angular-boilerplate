@@ -1,7 +1,7 @@
 (function() {
 	'use strict'
 	
-	var module = angular.module('header', []);
+	var module = angular.module('header', ['pascalprecht.translate']);
 	
 	module.directive('didiHeader', [function() {
 		var directive = {
@@ -16,5 +16,14 @@
 		};
 		
 		return directive;
+	}]);
+	
+	module.config(['$translateProvider', function($translateProvider) {
+		$translateProvider.translations('zh', {
+	        'TITLE': '客服&体验数据平台',
+	        'SIGNOUT': '退出'
+	      });
+	     
+	      $translateProvider.preferredLanguage('zh');
 	}]);
 })();

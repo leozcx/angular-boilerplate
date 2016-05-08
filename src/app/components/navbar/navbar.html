@@ -1,17 +1,23 @@
 <ul class="nav nav-pills nav-stacked mala-aside">
-	<li ng-class="{'active': topItem.pageId == vm.selectedPage.pageId}" ng-repeat="topItem in vm.data">
-		<a href="{{topItem.href}}" ng-click="vm.toggle(topItem);">
-			{{(topItem.pageDisplayName_key || topItem.pageDisplayName) | translate}}
+	<li ng-class="{'active': topItem.pageId == vm.navBarService.selectedPage.pageId}" ng-repeat="topItem in vm.data">
+		<a class="pointer" ng-href="{{topItem.href}}" ng-click="vm.toggle(topItem);">
+                    <i class="mr10" ng-class="topItem.iconClass" ></i>
+			{{(topItem.pageDisplayName_key ||
+                        topItem.pageDisplayName || topItem.name) | translate}}
 			<small>
-				<span class="glyphicon pull-right" aria-hidden="true" ng-if="topItem.hasChildren"
-					ng-class="{'glyphicon-triangle-bottom': !topItem.expanded, 'glyphicon-triangle-top': topItem.expanded}">
+				<span class="glyphicon mr5 pull-right" aria-hidden="true" ng-if="topItem.hasChildren"
+					ng-class="{'glyphicon-triangle-right':
+                                        !topItem.expanded,
+                                        'glyphicon-triangle-bottom': topItem.expanded}">
 				</span>
 			</small>
 		</a>
 		<!-- second level -->
 		<ul class="nav nav-pills nav-stacked animate-show" ng-show="topItem.expanded" nf-if="topItem.hasChildren">
-			<li ng-class="{'active': secondItem.pageId == vm.selectedPage.pageId}" ng-repeat="secondItem in topItem.children">
+			<li ng-class="{'active': secondItem.pageId ==
+                            vm.navBarService.selectedPage.pageId}" ng-repeat="secondItem in topItem.children">
 				<a href="{{secondItem.href}}" ng-click="vm.toggle(secondItem);">
+					<i class="glyphicon glyphicon-stats mr10"></i>
 					{{(secondItem.pageDisplayName_key || secondItem.pageDisplayName) | translate}}
 					<small>
 						<span class="glyphicon pull-right" aria-hidden="true" ng-if="secondItem.hasChildren"
@@ -21,8 +27,12 @@
 				</a>
 				<!-- third level -->
 				<ul class="nav nav-pills nav-stacked animate-show" ng-show="secondItem.expanded" nf-if="secondItem.hasChildren">
-					<li ng-class="{'active': thirdItem.pageId == vm.selectedPage.pageId}" ng-repeat="thirdItem in secondItem.children">
+					<li ng-class="{'active':
+                                            thirdItem.pageId ==
+                                            vm.navBarService.selectedPage.pageId}" ng-repeat="thirdItem in secondItem.children">
 						<a href="{{thirdItem.href}}" ng-click="vm.toggle(thirdItem);">
+
+							<i class="glyphicon glyphicon-stats mr10"></i>
 							{{(thirdItem.pageDisplayName_key || thirdItem.pageDisplayName) | translate}}
 						</a>
 					</li>

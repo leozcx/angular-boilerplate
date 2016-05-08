@@ -1,0 +1,26 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">{{BUSINESS | translate}}</div>
+		<div class="col-md-9">
+			<select class="col-sm-16  form-control">
+				<option value='aa'>bb</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 ">{{TIME | translate}}</div>
+		<div class="col-md-9">
+			<input date-range-picker name="daterange5"
+				class="form-control date-picker" type="text" ng-model="date2"
+				options="{locale: {format: 'MMMM D, YYYY'}}" required />
+		</div>
+	</div>
+	<div class="row">
+		<div calss="col-md-3">趋势图</div>
+		<div class="col-md-9" style="height: 400px">
+			<line-chart config="config" data="data"></line-chart>
+    		<line-chart config="config" data="multiple"></line-chart>
+		</div>
+	</div>
+</div>

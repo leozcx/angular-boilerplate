@@ -10,15 +10,21 @@
 			restrict : 'EA',
 			templateUrl : 'app/components/navbar/navbar.html',
 			controllerAs : 'vm',
+			scope: {},
 			bindToController : {
 				name: '=',
-				fetch: '&'
+				menu: '='
 			},
-			controller : ["navConfigProvider", "$http", "$scope", function(navConfigProvider, $http, $scope) {
+			controller : ["navConfigProvider", "$http", "$scope", "navBarService", function(navConfigProvider, $http, $scope, navBarService) {
 				var vm = this;
-				vm.selectedPage = navConfigProvider.config[0];
+				vm.selectedPage = navBarService.selectedPage ? navBarService.selectedPage : navConfigProvider.config[0];
 				vm.selectedPage.expanded = true;
-				vm.data = navConfigProvider.config;
+				vm.data = vm.menu || navConfigProvider.config;
+                                vm.getSelectedPage = function() {
+                                    console.log(navBarService.selectedPage);
+                                    return vm.selectedPage;
+                                };
+                                vm.navBarService = navBarService;
 				vm.hasPermit = function(pageItem) {
 					if(!vm.permits)
 						return false;
@@ -32,24 +38,21 @@
 				};
 				vm.toggle = function(item) {
 					item.expanded = !item.expanded;
-					vm.selectedPage = item;
+                                        if(!item.hasChildren)
+					    navBarService.selectedPage = item;
 				};
 				vm.hasPermit = function(item) {
-					console.log(item)
 					return true;
 				};
-				if(vm.fetch) {
-					vm.fetch().then(function(d) {
-						if(d) {
-							d.forEach(function(item) {
-								vm.data.push(item);
-							})
-						}
-					});
-				}
 			}]
 		};
 
 		return directive;
 	}
+
+        module.factory('navBarService', [function() {
+            return {
+                selectedPage: null
+            };
+        }]);
 })();

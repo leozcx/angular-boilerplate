@@ -28,6 +28,10 @@
     	  templateUrl: 'app/pages/login.html',
     	  controller: 'LoginController'
       })
+      .when('/report', {
+    	  templateUrl: 'app/pages/report.html',
+    	  controller: 'ReportController'
+      })
       .when('/403', {
     	  template: '<div>You donnot have permission to view this page</div>'
       })
