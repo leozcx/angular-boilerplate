@@ -7,7 +7,7 @@
             </span>
         </small>
     </a>
-    <ul ng-if="item.hasChildren" ng-show="item.expanded" class="nav nav-pills nav-stacked animate-show">
+    <ul ng-if="item.hasChildren" uib-collapse="!item.expanded" ng-sshow="item.expanded" class="nav nav-pills nav-stacked animate-show">
         <li ng-class="{'active': item.id == vm.selectedPage.id}" ng-repeat="item in item.children" ng-include="'menu.html'">
         </li>
     </ul>
