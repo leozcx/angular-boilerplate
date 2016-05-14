@@ -7,24 +7,35 @@
         };
         this.config = [
         {
-            'pageId': 'report-management',
-            'pageDisplayName_key': 'Management',
-            'requiredPermits': [],
-            'hasChildren': false,
-            'hasIcon': true,
-            'href': "/#/manage",
-            'iconClass': 'glyphicon glyphicon-cog',
+            'id': 'report-management',  //unique id
+            'displayName_key': 'Management',  //for translation
+            'displayName': 'Management',  //if displayName_key is not present, use this value
+            'requiredPermits': [],  //what permits needed to display this item
+            'hasChildren': false,  //whether has level 2 item
+            'hasIcon': true,  //whether has icon
+            'href': "/#/manage",  //which page to show when clicked
+            'iconClass': 'glyphicon glyphicon-cog' //icon class
         },
         {
-            'pageId': 'l2',
-            'pageDisplayName': 'Level 2 menu',
+            'id': 'l2',
+            'displayName': 'Level 2 menu',
             'hasChildren': true,
             'iconClass': 'test',
             'children': [
             {
-                'pageId': 'login',
-                'pageDisplayName': 'Login',
+                'id': 'login',
+                'displayName': 'Login',
                 'href': '/#/signin'
+            },
+            {
+                id: 'test',
+                name: 'Test',
+                hasChildren: true,
+                children:  [{
+                    id: 'test-1',
+                    name: 'Level 3'
+                }]
+
             }
             ]
         }

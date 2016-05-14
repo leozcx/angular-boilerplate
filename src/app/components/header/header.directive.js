@@ -3,7 +3,7 @@
 
     var module = angular.module('header', ['pascalprecht.translate']);
 
-    module.directive('didiHeader', [function() {
+    module.directive('header', [function() {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/header/header.html',
