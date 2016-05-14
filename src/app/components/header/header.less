@@ -1,9 +1,23 @@
 @bg-color:#40464e;
+@color: #777;
 @height: 70px;
 @logo-width: 200px;
-.header {
+.header, .header .container-fluid {
     background-color: @bg-color;
     height: @height;
+    padding-left: 0;
+}
+.header .navbar-default {
+    border: none;
+    background: @bg-color;
+}
+.header .navbar-header {
+    background: white;
+    width: @logo-width;
+    height: @height;
+}
+.header .nav .open > a, .header .nav .open > a:hover, .header .nav .open > a:focus {
+    background: @bg-color;
 }
 .logo {
     width: @logo-width;

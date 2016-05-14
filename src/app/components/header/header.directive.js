@@ -1,7 +1,7 @@
 (function() {
     'use strict'
 
-    var module = angular.module('header', ['pascalprecht.translate']);
+    var module = angular.module('header', ['pascalprecht.translate', 'ngAnimate']);
 
     module.directive('header', [function() {
         var directive = {
@@ -11,7 +11,14 @@
             bindToController : true,
             controller: ['$scope', '$log', function($scope, $log) {
                 var vm = this;
+                vm.isCollapsed = true;
+                vm.collapseMenu = collapseMenu;
                 vm.username = "Test";
+
+                function collapseMenu() {
+                    console.log('on blue');
+                    fm.isCollapsed = true;
+                }
                 $scope.items = [
                     'The first choice!',
                     'And another choice for you.',
@@ -21,6 +28,7 @@
                 $scope.status = {
                     isopen: false
                 };
+                
 
                 $scope.toggled = function(open) {
                     $log.log('Dropdown is now: ', open);
