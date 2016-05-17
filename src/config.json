@@ -1,0 +1,8 @@
+{
+    "dev": { 
+        "INDEX_URL": "/data/index.json"
+    },
+    "prod": { 
+        "INDEX_URL": "/data/index.json"
+    }
+}

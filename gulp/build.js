@@ -3,6 +3,10 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var runSequence = require('run-sequence');
+var fs = require('fs');
+var moment = require('moment');
+var pjson = require('../package.json');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -71,8 +75,7 @@ gulp.task('html', ['inject', 'partials'], function () {
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles())
-    .pipe($.filter('**/*.{eot,otf,svg,ttf,woff,woff2}'))
+  return gulp.src('./bower_components/**/*.{eot,svg,ttf,woff,woff2}')
     .pipe($.flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
@@ -81,6 +84,13 @@ gulp.task('other', function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
   });
+  
+  if(conf.paths.other) {
+	  conf.paths.other.forEach(function(file) {
+		  gulp.src(file.src)
+          .pipe(gulp.dest(path.join(conf.paths.dist, file.dest)));
+	  });
+  }
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
@@ -94,4 +104,21 @@ gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', function() {
+    return runSequence('config:dist', ['html', 'fonts', 'version', 'other']);
+});
+
+gulp.task('version', function() {
+    generateVersion();
+});
+
+function generateVersion() {
+    var version = pjson.version;
+    var build = moment().format('YYYYMMDD-HHmmss');
+    var p = path.join(conf.paths.src, '/version.json');
+    var obj = {
+        version: version,
+        build: build
+    };
+    fs.writeFileSync(p, JSON.stringify(obj));
+}
