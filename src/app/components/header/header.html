@@ -5,7 +5,6 @@
                 <a class="navbar-brand" href="#">Brand</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
                 <li class="dropdown" uib-dropdown>
                     <a href id="simple-dropdown" uib-dropdown-toggle role="button">
                         Click me for a dropdown, yo!
@@ -20,6 +19,7 @@
                         </li>
                     </ul>
                 </li>
+                <li><a href tooltip-placement="left" tooltip-trigger="click" uib-tooltip="{{::vm.version.version}} - {{::vm.version.build}}" class="glyphicon glyphicon-info-sign"></a></li>
             </ul>
         </div>
     </div>

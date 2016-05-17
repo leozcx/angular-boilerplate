@@ -9,11 +9,19 @@
             templateUrl: 'app/components/header/header.html',
             controllerAs : 'vm',
             bindToController : true,
-            controller: ['$scope', '$log', function($scope, $log) {
+            controller: ['$scope', '$log', '$http', function($scope, $log, $http) {
                 var vm = this;
                 vm.isCollapsed = true;
                 vm.collapseMenu = collapseMenu;
                 vm.username = "Test";
+                vm.version = null;
+
+                $http({
+                    method: 'get',
+                    url: '/version.json'
+                }).then(function(resp) {
+                    vm.version = resp.data;
+                });
 
                 function collapseMenu() {
                     console.log('on blue');
