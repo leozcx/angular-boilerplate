@@ -8,6 +8,7 @@ var http = require('http');
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 var runSequence = require('run-sequence');
+var bodyParser = require('body-parser');
 
 var util = require('util');
 var fs = require('fs');
@@ -43,11 +44,11 @@ function browserSyncInit(baseDir, browser) {
             '/awesome': 'awesome'
         };
     }
-
+    //to use body-parser.json, the 'content-type' of the request must be set to "application/json" 
     var server = {
         baseDir: baseDir,
         routes: routes,
-        middleware: [function (req, res, next) {
+        middleware: [bodyParser.json(), function (req, res, next) {
             res.setHeader('Access-Control-Allow-Origin', '*');
             next();
         }]
@@ -80,12 +81,11 @@ function browserSyncInit(baseDir, browser) {
         server: server,
         browser: browser
     }, function (err, bs) {
-        bs.addMiddleware('', function (req, res, next) {
-            if (req.url.indexOf('/data') === 0) {
-                return mocks['data'](req, res);
-            }
-            next();
-        }, {override: true});
+        //1st('/data'): to determine whether a url will use this middleware, e.g. /data/a.json will use it; /api/a will not
+        //3rd: whether this middleware should be processed firstly
+        bs.addMiddleware('/data', function (req, res, next) {
+            return mocks['data'](req, res);
+        }, {override: false});
     });
 }
 
