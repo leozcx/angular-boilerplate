@@ -36,6 +36,7 @@ function listFiles() {
     served: true,
     watched: false
   });
+  files.push({pattern: path.join(conf.paths.src, '/app/**/mock/*.json'), watched: true, served: true, included: false});
   return files;
 }
 
